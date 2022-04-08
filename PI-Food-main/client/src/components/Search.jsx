@@ -18,8 +18,9 @@ export const Search = () => {
     }
 
     return (
-        <div className='flex-search' onClick={handleSubmit}>
-            <input type="search"  placeholder="Search recipe" className="input-search" onChange={handleInput}/> 
+        <div className='flex-search' >
+            <input type="search"  placeholder="Search recipe" className="input-search" onChange={e => {handleInput(e)}} />
+            <button type='submit' onClick={e => {handleSubmit(e)}}>boton</button> 
         </div>
     )
 }

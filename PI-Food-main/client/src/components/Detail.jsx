@@ -6,7 +6,7 @@ import { getDetail } from "../actions";
 export const Detail = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { name, summary, image, diets, dishTypes, spoonacularScore, healthScore, steps} = useSelector(state => state.detail);
+    const { name, summary, image, diet, dishTypes, spoonacularScore, healthScore} = useSelector(state => state.detail);
 
     useEffect(() => {
         dispatch(getDetail(id))
@@ -21,7 +21,7 @@ export const Detail = () => {
                 <h3 className="title-detail">{name}</h3>
                 <p>{summary && summary.replace(/<[^>]+>/g, "")}</p>
                 <p>{dishTypes}</p>
-                {diets?.map((e) => (
+                {diet?.map((e) => (
                 <h4 key={e}>{e}</h4>
                 ))}
                 <span>
@@ -34,9 +34,6 @@ export const Detail = () => {
                     healthScore:{" "}
                     <progress id="healthScore" max="100" value={healthScore} />{" "} {healthScore}/100
                 </span>
-                {steps && (
-                    <p dangerouslySetInnerHTML={{ __html: `${steps}` }} />
-                )}
             </div>
         </div>
     )

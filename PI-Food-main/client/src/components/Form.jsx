@@ -7,7 +7,6 @@ import { getAll, getTypes, postRecipe } from '../actions';
 export const Form = () => {
     const dispatch = useDispatch();
     const diets = useSelector(state => state.diets)
-    console.log(diets)
     
     const [err, setErr] = useState({});
     const history = useHistory();
@@ -17,57 +16,7 @@ export const Form = () => {
         dispatch(getTypes());
     }, [dispatch]);
     
-    const [input, setInput] = useState({
-        name: '',
-        summary:'',
-        spoonacularScore: 0,
-        healthScore: 0,
-        steps: '',
-        diets: [],
-        image: ''
-    })
-
-    useEffect(() =>  {
-        setErr(validate(input))
-    }, [input])
-
-
-    function handleChange(e) {
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-        });
-        setErr(
-            validate({
-                ...input,
-                [e.target.name]: e.target.value
-            })
-        )
-    }
-
-    function handleCheck (e) {
-        if(e.target.checked && input.diets.includes(e.target.value)) {
-            setInput({
-                ...input,
-                diets: [...input.diets, e.target.value],
-            })
-        }
-        else if(!e.target.checked){
-            setInput({
-                ...input,
-                diets: input.diets.filter(e => e !== e.target.value)
-            })
-        }
-    }
-    
-    const disable = useMemo(() => {
-        if(err.name || err.summary || err.spoonacularScore || err.healthScore || err.steps || err.diets || err.image) {
-            return true;
-        }
-        return false;
-    }, [err])
-
-// name, summary, spoonacularScore, healthScore, steps, diets, image
+    // name, summary, spoonacularScore, healthScore, steps, diets, image
     function validate(input) {
         const validateName = /^[a-zA-Z\s]+$/ ;
         const validateUrl = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/ ;
@@ -90,11 +39,11 @@ export const Form = () => {
         if(input.healthScore < 1 || input.healthScore > 100) {
             err.healthScore = 'Number required. Must be a number between 1-100';
         }
-        if(!input.steps.length) {
-            err.steps = 'This field cannot be empty';
+        if(!input.instructions.length) {
+            err.instructions = 'This field cannot be empty';
         }
-        if(!input.diets.length) {
-            err.diets = 'This field cannot be empty';
+        if(input.diet?.length < 1) {
+            err.diet = 'This field cannot be empty';
         }
         if(input.image && !validateUrl.test(input.image)) {
             err.image = 'This is not a valid URL'
@@ -102,9 +51,58 @@ export const Form = () => {
         return err;
     }
 
+    const disable = useMemo(() => {
+        if(err.name || err.summary || err.spoonacularScore || err.healthScore || err.instructions || err.diet || err.image) {
+            return true;
+        }
+        return false;
+    }, [err])
+
+    const [input, setInput] = useState({
+        name: '',
+        summary:'',
+        spoonacularScore: 0,
+        healthScore: 0,
+        instructions: '',
+        diet: [],
+        image: ''
+    })
+
+    useEffect(() =>  {
+        setErr(validate(input))
+    }, [input])
+
+    function handleChange(e) {
+        e.preventDefault();
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        });
+        setErr(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    function handleCheck (d) {
+        console.log(input.diet)
+        if(!input.diet.includes(d.target.name)) {
+            setInput({
+                ...input,
+                diet: [...input.diet, d.target.name],
+            })
+        }
+        else {
+            setInput({
+                ...input,
+                diet: input.diet.filter(e => e !== d.target.name)
+            })
+        }
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
-        if(Object.keys(err).length === 0 && input.diets.length > 0) {
+        if(Object.keys(err).length === 0 && input.diet.length > 0) {
             dispatch(postRecipe(input))
             alert('Recipe created successfully!')
             setInput({
@@ -112,8 +110,8 @@ export const Form = () => {
                 summary:'',
                 spoonacularScore: 0,
                 healthScore: 0,
-                steps: '',
-                diets: [],
+                instructions: '',
+                diet: [],
                 image: ''
             })
             history.push('/home');
@@ -167,30 +165,29 @@ export const Form = () => {
                     className='input'
                 />
                 {err.healthScore && <p className='err-color'>{err.healthScore}</p>}
-                <label>Steps*:</label>
+                <label>Instructions*:</label>
                 <textarea 
                     type="text" 
-                    name='steps'
-                    value={input.steps}
+                    name='instructions'
+                    value={input.instructions}
                     onChange={handleChange} 
                     className='input'
                 />
-                {err.steps && <p className='err-color'>{err.steps}</p>}
+                {err.instructions && <p className='err-color'>{err.instructions}</p>}
                 <label>Diets*:</label>
                 <br/>
-                {diets.map(e=> (
+                {diets?.map(e=> (
                     <label key={e.name} className='input'>
                         <input
                             type='checkbox'
                             name={e.name}
                             value={e.name}
-                            onChange={handleCheck} 
+                            onChange={d => {handleCheck(d)}} 
                             
                         />
-                        {e.name} {''}
+                        {e.name}
                     </label>
                 ))}
-                <input type="text" />
                 <label>Image*:</label>
                 <input 
                     type='url'
@@ -200,7 +197,7 @@ export const Form = () => {
                     className='input'
                 />
                 {err.image && <p className='err-color'>{err.image}</p>}
-                <button disabled={disable} className='btn-create'>Create </button>
+                <button onChange={handleChange} type='submit' className='btn-create' disabled={disable}> Create </button>
             </form>
         </>
     )

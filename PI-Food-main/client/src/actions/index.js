@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_ALL, GET_TYPES, POST_RECIPE, GET_DETAIL, GET_NAME, FILTER_TYPES } from "../actions/types";
+import { GET_ALL, GET_TYPES, POST_RECIPE, GET_DETAIL, GET_NAME, FILTER_TYPES, ORDER_BY_NAME, ORDER_BY_SCORE } from "../actions/types";
 
 export function getAll() {
     return async function(dispatch) {
@@ -35,10 +35,10 @@ export function getTypes() {
 export function getName(name) {
     return async function (dispatch) {
         try {
-            const queryName = await axios.get(`http://localhost:3001/recipes?name=${name}`)
+            const queryName = await axios.get('http://localhost:3001/recipes?name=' + name)
             return dispatch({
                 type: GET_NAME,
-                payload: queryName
+                payload: queryName.data
             })
         } 
         catch (err) {
@@ -46,10 +46,10 @@ export function getName(name) {
         }
     }
 }
-export function postRecipe() {
+export function postRecipe(payload) {
     return async function(dispatch) {
         try {
-            const postUrl = await axios.post('http://localhost:3001/recipe');
+            const postUrl = await axios.post('http://localhost:3001/recipe', payload);
             return dispatch ({
                 type: POST_RECIPE,
                 payload: postUrl.data
@@ -77,8 +77,23 @@ export function getDetail (id) {
 }
 
 export function filterByTypes(payload) {
+    console.log(payload, 'filterbytipe')
     return {
         type: FILTER_TYPES,
+        payload
+    }
+}
+
+export function orderByName(payload) {
+    return {
+        type: ORDER_BY_NAME,
+        payload
+    }
+}
+
+export function orderByScore (payload) {
+    return {
+        type: ORDER_BY_SCORE,
         payload
     }
 }

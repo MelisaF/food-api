@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../style/style.css';
 
-export const Pagination = ({ page, setPage, maxRecipes}) => {
+export const Pagination = ({ page, setPage, recipePage}) => {
     const [input, setInput] = useState(1);
     
     const nextPage = () => {
@@ -19,7 +19,7 @@ export const Pagination = ({ page, setPage, maxRecipes}) => {
             </button>
             <span className="span-page">{input}</span>
             <span> de </span>
-            <span className="span-page">{maxRecipes}</span>
+            <span className="span-page">{recipePage}</span>
             <button className="btn-page" onClick={nextPage}>
             <i className='fas'>&#xf152;</i>
             </button>
