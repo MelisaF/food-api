@@ -31,6 +31,7 @@
     width: 50px;
     height: 50px;
     margin-left: 10px;
+    box-shadow: 0 5px 2px #666;
 }
 .container-nav {
     display: flex;
@@ -50,18 +51,27 @@
 .flex-search {
     text-align: center;
     margin-right: 1%;
+    display: flex;
 }
 
 .input-search {
     border-radius: 999px;
-    height: 2.1rem;
+    height: 1.5rem;
     border-color: rgba(0, 0, 0, 0.753);
     padding-left: 15px;
     padding-top: 5px;
     border: 1px solid rgba(0, 0, 0, 0.753);
     font-family: 'Ubuntu', sans-serif;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    box-shadow: 0 5px 2px #666;
     cursor: pointer;
+    position: relative;
+}
+.btn-search {
+    border: none;
+    background: none;
+    margin-top: 3px;
+    position: absolute;
+    left: 96%;
 }
 
 .nav-navbar {
@@ -98,16 +108,23 @@
     margin-bottom: 5%;
 
 }
+
+.homeCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+}
 .color-h3 {
     color: black;
     font-weight: bold;
-    /* margin-bottom: 25px;
-    padding-left: 5px; */
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+    line-height: 2rem;
+    margin-left: 5px;
 }
 .color-font {
     font-size: 1rem;
@@ -138,6 +155,7 @@
 .btn-page {
     background: none;
     border: none;
+    margin-left: 5px;
 }
 
 span-page {
@@ -155,11 +173,10 @@ span-page {
 /* Detail */
 
 .detail-container {
-    display: flex;
-    width: 80vw;
-    height: 70vh;
-    margin-left:8%;
-    margin-top: 5%;
+    width: 60%;
+    height: 90vh;
+    margin-left:20%;
+    margin-top: 1%;
     border-radius: 25px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
@@ -171,11 +188,24 @@ span-page {
 .detail-info {
     margin-left: 3px;
 }
+
+.h4-diet {
+    margin-left: 2%;
+    text-transform: capitalize;
+}
+.detail-dietScore {
+    display: flex;
+    justify-content: space-between;
+}
+progress {
+    background-color: rgb(130, 176, 84);
+}
 .img-detail {
-    height: 100vh;
-    filter: grayscale(31%) sepia(17%) blur(1px) brightness(88%) hue-rotate(3deg) saturate(108%) opacity(84%) contrast(149%) invert(11%);
-    -webkit-filter: grayscale(31%) sepia(17%) blur(1px) brightness(88%) hue-rotate(3deg) saturate(108%) opacity(84%) contrast(149%) invert(11%);
-    -moz-filter: grayscale(31%) sepia(17%) blur(1px) brightness(88%) hue-rotate(3deg) saturate(108%) opacity(84%) contrast(149%) invert(11%);
+    height: 40vh;
+    width: 60vw;
+    filter: grayscale(4%) sepia(30%) blur(1px) brightness(97%) saturate(82%) opacity(74%);
+    -webkit-filter: grayscale(4%) sepia(30%) blur(1px) brightness(97%) saturate(82%) opacity(74%);
+    -moz-filter: grayscale(4%) sepia(30%) blur(1px) brightness(97%) saturate(82%) opacity(74%);
 }
 
 /* form */
@@ -186,8 +216,12 @@ form {
     align-items: baseline;
     width: 70%;
     margin-left: 40%;
-    margin-top: 3%;
+    margin-top: 1%;
 
+}
+.input-range {
+    accent-color: rgb(130, 176, 84);
+    width: 40%;
 }
 .title-form {
     text-align: center;
@@ -206,4 +240,34 @@ form {
 
 .err-color {
     color: rgb(197, 29, 29);
+}
+
+
+/* ABOUT ME */
+
+.title-me {
+    text-align: center;
+    margin-top: 3px;
+}
+
+/* FILTER AND ORDER */
+
+select, option, .view-more{
+    border-radius: 999px;
+}
+
+.view-more {
+    height: 30px;
+    width: 150px;
+    background-color: white;
+    margin-right: 33px;
+    margin-top: 3px;
+    box-shadow: 0 5px 2px #666;
+}
+
+.filterAndOrder {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 12px;
 }

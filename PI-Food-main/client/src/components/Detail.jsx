@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { getDetail } from "../actions";
 
 export const Detail = () => {
-    const { id } = useParams();
     const dispatch = useDispatch();
+    const { id } = useParams();
     const { name, summary, image, diet, dishTypes, spoonacularScore, healthScore} = useSelector(state => state.detail);
 
     useEffect(() => {
@@ -21,19 +21,30 @@ export const Detail = () => {
                 <h3 className="title-detail">{name}</h3>
                 <p>{summary && summary.replace(/<[^>]+>/g, "")}</p>
                 <p>{dishTypes}</p>
-                {diet?.map((e) => (
-                <h4 key={e}>{e}</h4>
-                ))}
-                <span>
-                    spoonacularScore:{" "}
-                    <progress id="score" max="100" value={spoonacularScore} />{" "}
-                    {spoonacularScore}/100
-                </span>
                 <br/>
-                <span id="healthScore">
-                    healthScore:{" "}
-                    <progress id="healthScore" max="100" value={healthScore} />{" "} {healthScore}/100
-                </span>
+                <div className="detail-dietScore">
+                    <div>
+                        <h3>Diets:</h3>
+                        {diet?.map((e) => (
+                        <h4 key={e} className='h4-diet'>
+                            {e}
+                        </h4>
+                        ))}
+                    </div>
+                    <div>
+                        <span>
+                            SpoonacularScore:
+                            <progress id="score" max="100" value={spoonacularScore} />{" "}
+                            {spoonacularScore}/100
+                        </span>
+                        <br/>
+                        <span id="healthScore">
+                            HealthScore:
+                            <progress id="healthScore" max="100" value={healthScore} />
+                            {" "} {healthScore}/100
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     )

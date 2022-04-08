@@ -6,3 +6,5 @@ export const GET_DETAIL = 'GET_DETAIL';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const FILTER_TYPES = 'FILTER_TYPES';
 export const ORDER_BY_SCORE = 'ORDER_BY_SCORE';
+export const CREATE_OR_API = 'CREATE_OR_API';
+export const REMOVE_DETAIL = 'REMOVE_DETAIL';

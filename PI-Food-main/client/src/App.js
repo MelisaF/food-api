@@ -1,4 +1,5 @@
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import { AboutMe } from './components/AboutMe';
 import { Detail } from './components/Detail';
 import { Form } from './components/Form';
 import { Home } from './components/Home';
@@ -8,12 +9,13 @@ import { Navbar } from './components/Navbar';
 function App() {
   return (
     <BrowserRouter>
-      <Navbar/>
+      <Navbar />
       <Switch>
         <Route path='/' exact component= { LandingPage }/>
         <Route path='/home' component= { Home }/>
         <Route path='/recipe' component= { Form }/>
         <Route path='/recipes/:id' component= { Detail }/>
+        <Route path='/aboutMe' component= { AboutMe }/>
       </Switch>
     </BrowserRouter>
     

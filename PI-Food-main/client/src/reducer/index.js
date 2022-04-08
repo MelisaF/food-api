@@ -1,4 +1,4 @@
-import { FILTER_TYPES, GET_ALL, GET_DETAIL, GET_NAME, GET_TYPES, ORDER_BY_NAME, ORDER_BY_SCORE } from "../actions/types";
+import { CREATE_OR_API, FILTER_TYPES, GET_ALL, GET_DETAIL, GET_NAME, GET_TYPES, ORDER_BY_NAME, ORDER_BY_SCORE, REMOVE_DETAIL } from "../actions/types";
 
 const initialState = {
     recipes: [],
@@ -36,37 +36,46 @@ export default function rootReducer(state= initialState, action) {
             const allTypes = state.allRecipes;
             console.log(allTypes, 'copia del estado')
             const filterTypes = action.payload === 'all' ?
-            allTypes : allTypes.filter(e => e.diet?.includes(action.payload))
+            allTypes : allTypes.filter((e) => e.diet?.includes(action.payload) || e.diets?.find(e => e.name === action.payload))
             console.log(filterTypes, 'filter type')
             return {
                 ...state,
                 recipes : filterTypes
             }
+        case CREATE_OR_API:
+            const allInfo = action.payload === 'create'?  state.allRecipes?.filter((e) => e.createDb === true) : state.allRecipes?.filter((e) => !e.createDb)
+            return {
+                ...state,
+                recipes: allInfo === 'all' ? state.allRecipes : allInfo
+            }
         case ORDER_BY_NAME:
             const orderName = action.payload === 'all' ?
+            
             state.allRecipes : action.payload === 'asc' ?
             state.allRecipes.sort((a,b) => {
-                if (a.name > b.name) {
+                if (a.name.toLowerCase() > b.name.toLowerCase()) {
                     return 1;
                 }
-                if (a.name < b.name) {
+                if (a.name.toLowerCase() < b.name.toLowerCase()) {
                     return -1;
                 }
                 return 0;
             }) :
             state.allRecipes.sort((a,b) => {
-                if (a.name < b.name) {
+                if (a.name.toLowerCase() < b.name.toLowerCase()) {
                     return 1;
                 }
-                if (a.name > b.name) {
+                if (a.name.toLowerCase() > b.name.toLowerCase()) {
                     return -1;
                 }
                 return 0;
             })
+            console.log(orderName, 'const orderName')
             return {
                 ...state,
                 recipes: orderName
             }
+            
         case ORDER_BY_SCORE:
             const orderScore = action.payload === 'all' ?
             state.allRecipes : action.payload === 'high' ?
@@ -83,6 +92,11 @@ export default function rootReducer(state= initialState, action) {
             return {
                 ...state,
                 recipes: orderScore
+            }
+        case REMOVE_DETAIL:
+            return {
+                ...state,
+                detail: []
             }
         default: 
             return state;

@@ -24,28 +24,28 @@ export const Form = () => {
         if(!input.name.length) {
             err.name = 'This field cannot be empty';
         }
-        if(!validateName.test(input.name)) {
+        else if(!validateName.test(input.name)) {
             err.name = 'Special characters or numbers are not allowed';
         }
-        if(!input.summary.length) {
+        else if(!input.summary.length) {
             err.summary = 'This field cannot be empty'
         }
-        if(input.summary.length < 50) {
-            err.summary = 'This field must be at least 50 characters';
+        else if(input.summary.length < 20) {
+            err.summary = 'This field must be at least 20 characters';
         }
-        if(input.spoonacularScore < 1 || input.spoonacularScore > 100 ) {
+        else if(input.spoonacularScore < 1 || input.spoonacularScore > 100 ) {
             err.spoonacularScore = 'Number required. Must be a number between 1-100';
         }
-        if(input.healthScore < 1 || input.healthScore > 100) {
+        else if(input.healthScore < 1 || input.healthScore > 100) {
             err.healthScore = 'Number required. Must be a number between 1-100';
         }
-        if(!input.instructions.length) {
+        else if(!input.instructions.length) {
             err.instructions = 'This field cannot be empty';
         }
-        if(input.diet?.length < 1) {
+        else if(input.diet?.length < 1) {
             err.diet = 'This field cannot be empty';
         }
-        if(input.image && !validateUrl.test(input.image)) {
+        else if(input.image && !validateUrl.test(input.image)) {
             err.image = 'This is not a valid URL'
         }
         return err;
@@ -151,7 +151,7 @@ export const Form = () => {
                     name='spoonacularScore'
                     value={input.spoonacularScore}
                     onChange={handleChange} 
-                    className='input'
+                    className='input-range'
                 />
                 {err.spoonacularScore && <p className='err-color'>{err.spoonacularScore}</p>}
                 <label>Health score*:</label>
@@ -162,7 +162,7 @@ export const Form = () => {
                     name='healthScore'
                     value={input.healthScore}
                     onChange={handleChange} 
-                    className='input'
+                    className='input-range'
                 />
                 {err.healthScore && <p className='err-color'>{err.healthScore}</p>}
                 <label>Instructions*:</label>
@@ -174,6 +174,9 @@ export const Form = () => {
                     className='input'
                 />
                 {err.instructions && <p className='err-color'>{err.instructions}</p>}
+                <div>
+                    
+                </div>
                 <label>Diets*:</label>
                 <br/>
                 {diets?.map(e=> (
@@ -182,8 +185,7 @@ export const Form = () => {
                             type='checkbox'
                             name={e.name}
                             value={e.name}
-                            onChange={d => {handleCheck(d)}} 
-                            
+                            onChange={d => {handleCheck(d)}}   
                         />
                         {e.name}
                     </label>

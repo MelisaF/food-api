@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_ALL, GET_TYPES, POST_RECIPE, GET_DETAIL, GET_NAME, FILTER_TYPES, ORDER_BY_NAME, ORDER_BY_SCORE } from "../actions/types";
+import { GET_ALL, GET_TYPES, POST_RECIPE, GET_DETAIL, GET_NAME, FILTER_TYPES, ORDER_BY_NAME, ORDER_BY_SCORE, CREATE_OR_API, REMOVE_DETAIL } from "../actions/types";
 
 export function getAll() {
     return async function(dispatch) {
@@ -42,7 +42,7 @@ export function getName(name) {
             })
         } 
         catch (err) {
-            console.log(err)
+            alert('Recipe not found', err)
         }
     }
 }
@@ -94,6 +94,20 @@ export function orderByName(payload) {
 export function orderByScore (payload) {
     return {
         type: ORDER_BY_SCORE,
+        payload
+    }
+}
+
+export function createOrApi (payload) {
+    return {
+        type: CREATE_OR_API,
+        payload
+    }
+}
+
+export function removeDetail(payload) {
+    return {
+        type: REMOVE_DETAIL,
         payload
     }
 }
