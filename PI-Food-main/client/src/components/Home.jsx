@@ -4,9 +4,10 @@ import { createOrApi, filterByTypes, getAll, getTypes, orderByName, orderByScore
 import { Card } from './Card'
 import { Pagination } from './Pagination';
 import { Link } from 'react-router-dom';
-import '../style/style.css'
-// import { Search } from './Search';
+import { Navbar } from './Navbar';
+import { Search } from './Search';
 import loading from '../image/loading.gif';
+import '../style/style.css'
 
 export const Home = () => {
     const dispatch = useDispatch();
@@ -49,10 +50,16 @@ export const Home = () => {
     function handleReset(e) {
         e.preventDefault();
         dispatch(getAll());
+        setPage(1);
     }
 
     return (
         <>
+            <div className='search-comp'>
+                <Search setPage= {setPage} />
+            </div>
+            <Navbar />
+            <button onClick={handleReset} className='view-more'>View more recipes</button>
             <div className='filterAndOrder'>
                 <div>
                     <select onChange= {filterTypes}>
@@ -81,9 +88,6 @@ export const Home = () => {
                             <option value='low'>Lowest Score</option>
                     </select>
                 </div>
-                
-                
-                <button onClick={handleReset} className='view-more'>View more recipes</button>
                 {/* <Search setPage= {setPage} /> */}
             </div>
             <div className='home-card'>

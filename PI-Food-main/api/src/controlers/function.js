@@ -63,7 +63,7 @@ const idApi = async(id) => {
     try {
         const url = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
         const detail = url.data;
-        return {
+            return {
             id: id,
             image: detail.image,
             name: detail.title,
@@ -94,6 +94,7 @@ const idDb = async (id) => {
             name: dbId.name,
             score: dbId.score,
             summary: dbId.summary,
+            spoonacularScore: dbId.spoonacularScore,
             healthScore: dbId.healthScore,
             instructions: dbId.instructions,
             createdByUser: dbId.createdByUser,

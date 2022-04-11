@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import '../style/style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAll, getTypes, postRecipe } from '../actions';
+import img from '../image/recipe.png';
 
 export const Form = () => {
     const dispatch = useDispatch();
@@ -123,82 +125,99 @@ export const Form = () => {
 
     return (
         <>
+            <div>
+                <Link to="/home">
+                    <img className='img-logo' src={ img } alt='img not found'/>
+                </Link>
+            </div>
             <h1 className='title-form'>CREATE YOUR RECIPE</h1>
             <form onSubmit={handleSubmit}>
-                <label>Name*:</label>
-                <input 
-                    type='text'
-                    name='name'
-                    value={input.name}
-                    onChange={handleChange} 
-                    className='input'
-                />
-                {err.name && <p className='err-color'>{err.name}</p>}
-                <label>Summary*:</label>
-                <textarea 
-                    type='text'
-                    name='summary'
-                    value={input.summary} 
-                    onChange={handleChange}
-                    className='input' 
-                />
-                {err.summary && <p className='err-color'>{err.summary}</p>}
-                <label>Spoonacular score*:</label>
-                <input 
-                    type="range"
-                    min= '1' 
-                    max= '100'
-                    name='spoonacularScore'
-                    value={input.spoonacularScore}
-                    onChange={handleChange} 
-                    className='input-range'
-                />
-                {err.spoonacularScore && <p className='err-color'>{err.spoonacularScore}</p>}
-                <label>Health score*:</label>
-                <input 
-                    type="range"
-                    min= '1' 
-                    max= '100'
-                    name='healthScore'
-                    value={input.healthScore}
-                    onChange={handleChange} 
-                    className='input-range'
-                />
-                {err.healthScore && <p className='err-color'>{err.healthScore}</p>}
-                <label>Instructions*:</label>
-                <textarea 
-                    type="text" 
-                    name='instructions'
-                    value={input.instructions}
-                    onChange={handleChange} 
-                    className='input'
-                />
-                {err.instructions && <p className='err-color'>{err.instructions}</p>}
-                <div>
-                    
+                <div className='div-input'>
+                    <label>Name*:</label>
+                    <input 
+                        type='text'
+                        name='name'
+                        value={input.name}
+                        onChange={handleChange} 
+                        className='input'
+                    />
+                    {err.name && <p className='err-color'>{err.name}</p>}
                 </div>
-                <label>Diets*:</label>
-                <br/>
-                {diets?.map(e=> (
-                    <label key={e.name} className='input'>
-                        <input
-                            type='checkbox'
-                            name={e.name}
-                            value={e.name}
-                            onChange={d => {handleCheck(d)}}   
-                        />
-                        {e.name}
-                    </label>
-                ))}
-                <label>Image*:</label>
-                <input 
-                    type='url'
-                    name='image'
-                    value={input.image}
-                    onChange={handleChange} 
-                    className='input'
-                />
-                {err.image && <p className='err-color'>{err.image}</p>}
+                <div className='div-input'>
+                    <label>Summary*:</label>
+                    <textarea 
+                        type='text'
+                        name='summary'
+                        value={input.summary} 
+                        onChange={handleChange}
+                        className='input' 
+                    />
+                    {err.summary && <p className='err-color'>{err.summary}</p>}
+                </div>
+                <div className='div-input'>
+                    <label>Spoonacular score*:</label>
+                    <input 
+                        type="range"
+                        min= '1' 
+                        max= '100'
+                        name='spoonacularScore'
+                        value={input.spoonacularScore}
+                        onChange={handleChange} 
+                        className='input-range'
+                    />
+                    {err.spoonacularScore && <p className='err-color'>{err.spoonacularScore}</p>}
+                </div>
+                <div className='div-input'>
+                    <label>Health score*:</label>
+                    <input 
+                        type="range"
+                        min= '1' 
+                        max= '100'
+                        name='healthScore'
+                        value={input.healthScore}
+                        onChange={handleChange} 
+                        className='input-range'
+                    />
+                    {err.healthScore && <p className='err-color'>{err.healthScore}</p>}
+                </div>
+                <div className='div-input'>
+                    <label>Instructions*:</label>
+                    <textarea 
+                        type="text" 
+                        name='instructions'
+                        value={input.instructions}
+                        onChange={handleChange} 
+                        className='input'
+                    />
+                    {err.instructions && <p className='err-color'>{err.instructions}</p>}
+                </div>
+                <div className='div-input'>
+                    <label>Image*:</label>
+                    <input 
+                        type='url'
+                        name='image'
+                        value={input.image}
+                        onChange={handleChange} 
+                        className='input'
+                    />
+                    {err.image && <p className='err-color'>{err.image}</p>}
+                </div>
+                <div className='form-diets'>
+                    <label>Diets*:</label>
+                    <br/>
+                    {diets?.map(e=> (
+                        <label key={e.name} className='input'>
+                            <input
+                                type='checkbox'
+                                name={e.name}
+                                value={e.name}
+                                onChange={d => {handleCheck(d)}}
+                                className='input-diets'   
+                            />
+                            {e.name}
+                        </label>
+                    ))}
+                </div>
                 <button onChange={handleChange} type='submit' className='btn-create' disabled={disable}> Create </button>
             </form>
         </>

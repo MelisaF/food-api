@@ -14,7 +14,7 @@ export const LandingPage = () => {
     return (
         <div className='container-landing'>
             <Link to="/home">
-                <button className='btn-landing'>View more recipes</button>
+                <button className='btn-landing'>Discover recipes</button>
             </Link>
         </div>
     )

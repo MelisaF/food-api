@@ -6,6 +6,7 @@
     height: 80vh;
     position: relative;
     text-align: right;
+    margin-top: 5%
 }
 
 .btn-landing {
@@ -16,7 +17,7 @@
     font-weight: bold;
     width: 150px;
     height: 50px;
-    margin-top: 20%;
+    margin-top: 15%;
     margin-right: 20%;
     box-shadow: 0 5px 2px #666;
 }
@@ -30,12 +31,13 @@
 .img-logo {
     width: 50px;
     height: 50px;
-    margin-left: 10px;
+    margin-left: 15px;
+    margin-top: 5px;
     box-shadow: 0 5px 2px #666;
 }
 .container-nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 1%;
 }
@@ -47,16 +49,27 @@
     margin-left: 30px;
     margin-right: 30px;
 }
-
+.search-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 3px;
+}
 .flex-search {
     text-align: center;
-    margin-right: 1%;
     display: flex;
+    width: 53%;
+    margin-top: 13px;
+    margin-left: 34%;
+}
+
+.search-comp {
+    margin-top: 17px;
 }
 
 .input-search {
     border-radius: 999px;
     height: 1.5rem;
+    width: 280px;
     border-color: rgba(0, 0, 0, 0.753);
     padding-left: 15px;
     padding-top: 5px;
@@ -71,12 +84,12 @@
     background: none;
     margin-top: 3px;
     position: absolute;
-    left: 96%;
+    left: 58%;
 }
 
 .nav-navbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: inherit;
     width: 100%;
 }
@@ -104,9 +117,8 @@
     border-radius: 25px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
     width: 300px;
-    height: 460px;
+    height: 520px;
     margin-bottom: 5%;
-
 }
 
 .homeCard {
@@ -209,33 +221,47 @@ progress {
 }
 
 /* form */
-
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    width: 70%;
-    margin-left: 40%;
-    margin-top: 1%;
-
+    width:500px;
+	padding:16px;
+	border-radius:30px;
+	margin:auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+.div-input {
+	width: 100%;
+}
+textarea {
+	line-height: 150%;
+	height: 150px;
+	resize: none;
+    width: 100%;
+    border-radius:5px;
+}
+.input {
+    width: 89%;
 }
 .input-range {
     accent-color: rgb(130, 176, 84);
-    width: 40%;
+    width: 90%;
+}
+.input-diets {
+    margin-left: 5px;
 }
 .title-form {
     text-align: center;
     margin-top: 3px;
 }
 
-.input {
-    width: 40%;
-}
+
 .btn-create {
-    border-radius: 5px;
-    width: 20%;
-    margin-left: 8%;
-    margin-top: 2%;
+    width:50%;
+	padding:8px 16px;
+	margin-top:32px;
+    margin-left: 23%;
+	border:1px solid #666;
+	border-radius:5px;
+	display:block;
 }
 
 .err-color {
@@ -248,26 +274,45 @@ form {
 .title-me {
     text-align: center;
     margin-top: 3px;
+    letter-spacing: 1.5px;
 }
 
+.icon-redes {
+    text-align: center;
+    margin-top: 15px; 
+}
+.icon-redes img {
+    padding: 0px 10px 0px 10px;
+}
 /* FILTER AND ORDER */
 
 select, option, .view-more{
     border-radius: 999px;
+    margin-left: 5px;
 }
 
 .view-more {
     height: 30px;
     width: 150px;
     background-color: white;
-    margin-right: 33px;
-    margin-top: 3px;
+    margin: 1% 0 0 44%;
     box-shadow: 0 5px 2px #666;
 }
 
+.view-more:hover {
+    background-color: black;
+    color:white;
+    border: 2px solid white;
+    transition: 1s;
+    cursor: pointer;
+}
 .filterAndOrder {
     display: flex;
-    flex-direction: column;
-    align-items: end;
+    align-items: baseline;
     margin-right: 12px;
+    margin-top: 15px;
+    justify-content: center;
+    align-content: stretch;
+    flex-wrap: wrap;
 }
+

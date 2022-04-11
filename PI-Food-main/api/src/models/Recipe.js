@@ -19,10 +19,10 @@ module.exports = (sequelize) => {
       allowNull:false,
     },
     spoonacularScore: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
     },
     healthScore: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
     },
     instructions: {
       type: DataTypes.TEXT,
