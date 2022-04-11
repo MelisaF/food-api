@@ -21,7 +21,7 @@ export const Search = ({setPage}) => {
         setPage(1)
         setName('')
         if(!name) {
-            alert('Recipe not found')
+            alert('Recipe not found');
         }
     }    
     function handleRemove(){

@@ -185,25 +185,34 @@ span-page {
 /* Detail */
 
 .detail-container {
-    width: 60%;
-    height: 90vh;
-    margin-left:20%;
-    margin-top: 1%;
+    width: 65%;
+    height: 95vh;
+    margin-left:17%;
     border-radius: 25px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 .title-detail {
     text-transform: uppercase;
     font-size: 1.5rem;
-    margin-bottom: 3px;
+    margin-bottom: 6px;
+    margin-left: 59px;
+    margin-top: 2%;
 }
 .detail-info {
     margin-left: 3px;
 }
+.score-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 59px;
+    margin-top: 1%;
+}
 
 .h4-diet {
     margin-left: 2%;
+    margin-top: 2px;
     text-transform: capitalize;
+    color: grey;
 }
 .detail-dietScore {
     display: flex;
@@ -211,13 +220,40 @@ span-page {
 }
 progress {
     background-color: rgb(130, 176, 84);
+    margin-left: 5px;
+}
+.progress-container {
+    display: flex;
+    margin-right: 100px;
+    margin-bottom: 10px;
+    gap: 200px;
+}
+.diet-detail {
+    margin-left: 59px;
+    margin-top: 2%;
+    display: flex;
+    color: grey;
+
+}
+.title-score {
+    display: flex;
+    gap: 40%;
+}
+.pro {
+    margin-left: -5px;
+}
+.proH {
+    margin-left: 8%;
 }
 .img-detail {
     height: 40vh;
-    width: 60vw;
-    filter: grayscale(4%) sepia(30%) blur(1px) brightness(97%) saturate(82%) opacity(74%);
-    -webkit-filter: grayscale(4%) sepia(30%) blur(1px) brightness(97%) saturate(82%) opacity(74%);
-    -moz-filter: grayscale(4%) sepia(30%) blur(1px) brightness(97%) saturate(82%) opacity(74%);
+    width: 65vw;
+}
+
+.summary-detail {
+    text-align: justify;
+    margin-left: 59px;
+    margin-right: 59px;
 }
 
 /* form */
@@ -316,3 +352,24 @@ select, option, .view-more{
     flex-wrap: wrap;
 }
 
+/* MEDIA QUERIES */
+
+@media (max-width: 480px) {
+    .flex-search {
+        margin-left: 14%;
+    }
+    .btn-search {
+        left: 74%;
+    }
+    .view-more {
+        margin-left: 34%;
+    }
+    .detail-container {
+        width: 79%;
+        height: 139vh;
+        margin-left: 11%;
+    }
+    .img-detail {
+        width: 79vw;
+    }
+}

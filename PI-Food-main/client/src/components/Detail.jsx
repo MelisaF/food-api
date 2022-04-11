@@ -31,31 +31,30 @@ export const Detail = () => {
                 </div>
                 <div className="detail-info">
                     <h3 className="title-detail">{name}</h3>
-                    <p>{summary && summary.replace(/<[^>]+>/g, "")}</p>
+                    <p className="summary-detail">{summary && summary.replace(/<[^>]+>/g, "")}</p>
                     <br/>
-                    <div className="detail-dietScore">
-                        <div>
-                            <h3>Diets:</h3>
-                            {diet?.map((e) => (
-                            <h4 key={e} className='h4-diet'>
-                                {e}
-                            </h4>
-                            ))}
+                        <div className="score-container">
+                            <div className="title-score">
+                                <h3 id="spoonacularScore">SpoonacularScore:</h3>
+                                <h3 id="healthScore">HealthScore:</h3>
+                            </div>
+                            <div className="progress-container">
+                                <div className="pro">
+                                    <progress id="spoonacularScore" max="100" value={spoonacularScore} />{spoonacularScore}/100
+                                </div>
+                                <div className="proH">
+                                    <progress id="healthScore" max="100" value={healthScore} />{healthScore}/100
+                                </div>  
+                            </div>
                         </div>
-                        <div>
-                            <span>
-                                SpoonacularScore:
-                                <progress id="spoonacularScore" max="100" value={spoonacularScore} />
-                                {spoonacularScore}/100
-                            </span>
-                            <br/>
-                            <span id="healthScore">
-                                HealthScore:
-                                <progress id="healthScore" max="100" value={healthScore} />
-                                {healthScore}/100
-                            </span>
-                        </div>
-                    </div>
+                            <div className="diet-detail">
+                                <h3>Diets:</h3>
+                                {diet?.map((e) => (
+                                <h4 key={e} className='h4-diet'>
+                                    {e} - 
+                                </h4>
+                                ))}
+                            </div>
                 </div>
             </div>
         </>

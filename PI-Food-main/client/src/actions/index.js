@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 import { GET_ALL, GET_TYPES, POST_RECIPE, GET_DETAIL, GET_NAME, FILTER_TYPES, ORDER_BY_NAME, ORDER_BY_SCORE, CREATE_OR_API, REMOVE_DETAIL } from "../actions/types";
 
 export function getAll() {
@@ -20,7 +20,6 @@ export function getTypes() {
     return async function(dispatch) {
         try {
             const diets = await axios.get('http://localhost:3001/diets');
-            console.log(diets)
             return dispatch({
                 type: GET_TYPES,
                 payload: diets.data

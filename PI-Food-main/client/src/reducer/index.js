@@ -10,7 +10,6 @@ const initialState = {
 export default function rootReducer(state= initialState, action) {
     switch(action.type) {
         case GET_ALL:
-            console.log(action.payload)
             return {
                 ...state,
                 recipes: action.payload,
@@ -34,10 +33,8 @@ export default function rootReducer(state= initialState, action) {
             }
         case FILTER_TYPES:
             const allTypes = state.allRecipes;
-            console.log(allTypes, 'copia del estado')
             const filterTypes = action.payload === 'all' ?
             allTypes : allTypes.filter((e) => e.diet?.includes(action.payload) || e.diets?.find(e => e.name === action.payload))
-            console.log(filterTypes, 'filter type')
             return {
                 ...state,
                 recipes : filterTypes
@@ -70,7 +67,6 @@ export default function rootReducer(state= initialState, action) {
                 }
                 return 0;
             })
-            console.log(orderName, 'const orderName')
             return {
                 ...state,
                 recipes: orderName
@@ -96,7 +92,8 @@ export default function rootReducer(state= initialState, action) {
         case REMOVE_DETAIL:
             return {
                 ...state,
-                detail: []
+                detail: [],
+                recipes: []
             }
         default: 
             return state;
