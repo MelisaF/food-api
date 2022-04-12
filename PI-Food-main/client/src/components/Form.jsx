@@ -202,7 +202,7 @@ export const Form = () => {
                     />
                     {err.image && <p className='err-color'>{err.image}</p>}
                 </div>
-                <div className='form-diets'>
+                {/* <div className='form-diets'>
                     <label>Diets*:</label>
                     <br/>
                     {diets?.map(e=> (
@@ -217,7 +217,25 @@ export const Form = () => {
                             {e.name}
                         </label>
                     ))}
-                </div>
+                </div> */}
+                <label>Diets*:</label>
+                <article className='article-form'>
+                    {diets?.map(e=> (
+                        <div className='articleD'>
+                            <input
+                                key={e.name}
+                                type='checkbox'
+                                name={e.name}
+                                value={e.name}
+                                onChange={d => {handleCheck(d)}}
+                                className='input-diets'   
+                            />
+                            <div className='divSpan'>
+                                <span>{e.name}</span>
+                            </div>
+                        </div>
+                    ))}
+                </article>
                 <button onChange={handleChange} type='submit' className='btn-create' disabled={disable}> Create </button>
             </form>
         </>

@@ -76,7 +76,6 @@ export function getDetail (id) {
 }
 
 export function filterByTypes(payload) {
-    console.log(payload, 'filterbytipe')
     return {
         type: FILTER_TYPES,
         payload

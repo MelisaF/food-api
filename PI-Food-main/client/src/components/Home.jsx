@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Search } from './Search';
 import loading from '../image/loading.gif';
+import notFound from '../image/notFound.png';
 import '../style/style.css'
 
 export const Home = () => {
@@ -32,10 +33,12 @@ export const Home = () => {
         dispatch(filterByTypes(e.target.value));
         setPage(1);
     }
+
     function filterCreateOrApi(e) {
         dispatch(createOrApi(e.target.value));
         setPage(1);
     }
+
     function orderAZ(e) {
         dispatch(orderByName(e.target.value));
         setOrder(`Order by name: ${e.target.value}`);
@@ -47,6 +50,7 @@ export const Home = () => {
         setOrder(`Order by score: ${e.target.value}`)
         setPage(1);
     }
+    
     function handleReset(e) {
         e.preventDefault();
         dispatch(getAll());
@@ -88,7 +92,6 @@ export const Home = () => {
                             <option value='low'>Lowest Score</option>
                     </select>
                 </div>
-                {/* <Search setPage= {setPage} /> */}
             </div>
             <div className='home-card'>
                 {
@@ -112,7 +115,12 @@ export const Home = () => {
                     ) : 
                     (
                         <div>
-                            <p>404-Recipe not found</p>
+                            <img
+                                src={notFound}
+                                alt="Recipe Not Found"
+                                width="800px"
+                                height="400px"
+                            />
                         </div>
                     )
                 }
