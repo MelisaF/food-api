@@ -87,7 +87,6 @@ export const Form = () => {
     }
 
     function handleCheck (d) {
-        console.log(input.diet)
         if(!input.diet.includes(d.target.name)) {
             setInput({
                 ...input,
@@ -202,22 +201,6 @@ export const Form = () => {
                     />
                     {err.image && <p className='err-color'>{err.image}</p>}
                 </div>
-                {/* <div className='form-diets'>
-                    <label>Diets*:</label>
-                    <br/>
-                    {diets?.map(e=> (
-                        <label key={e.name} className='input'>
-                            <input
-                                type='checkbox'
-                                name={e.name}
-                                value={e.name}
-                                onChange={d => {handleCheck(d)}}
-                                className='input-diets'   
-                            />
-                            {e.name}
-                        </label>
-                    ))}
-                </div> */}
                 <label>Diets*:</label>
                 <article className='article-form'>
                     {diets?.map(e=> (

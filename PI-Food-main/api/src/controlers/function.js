@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const { default: axios } = require("axios");
-const { Op } = require("sequelize");
+//const { Op } = require("sequelize");
 const { Recipe, Diet } = require ('../db.js');
 
 const apiRecipes= async() => {
@@ -20,7 +20,6 @@ const apiRecipes= async() => {
                 summary: e.summary,
             }
         })
-        
         return recipe;
     } 
     catch (err) {

@@ -18,6 +18,7 @@ export const Search = ({setPage}) => {
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(getName(name))
+        dispatch(removeDetail())
         setPage(1)
         setName('')
         if(!name) {

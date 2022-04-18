@@ -23,7 +23,6 @@ const typesDiet = async() => {
             "fodmap friendly",
             "whole 30",
         ];
-
         types.map(async(e) => {
             await Diet.findOrCreate({
                 where: {name:e}
@@ -35,6 +34,7 @@ const typesDiet = async() => {
         console.log(err)
     }
 }
+
 router.get('/', async(req,res) => {
     try {
         const diets = await typesDiet();

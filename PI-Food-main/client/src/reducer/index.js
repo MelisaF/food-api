@@ -40,16 +40,30 @@ export default function rootReducer(state= initialState, action) {
                 recipes : filterTypes
             }
         case CREATE_OR_API:
-            const allInfo = action.payload === 'create'?  state.allRecipes?.filter((e) => e.createDb === true) : state.allRecipes?.filter((e) => !e.createDb)
+            state.recipes = state.allRecipes;
+            const copy = state.recipes;
+            const filterRecipe = ()=> {
+                if(action.payload === 'all') {
+                    return copy
+                }
+                else if(action.payload === 'create') {
+                    return copy?.filter((e) => e.createDb === true)
+                }
+                else if(action.payload === 'api') {
+                    return copy?.filter((e) => !e.createDb)
+                }
+                else {
+                    return copy
+                }
+            }
             return {
                 ...state,
-                recipes: allInfo === 'all' ? state.allRecipes : allInfo
+                recipes: filterRecipe()
             }
         case ORDER_BY_NAME:
             const orderName = action.payload === 'all' ?
-            
-            state.allRecipes : action.payload === 'asc' ?
-            state.allRecipes.sort((a,b) => {
+            state.recipes : action.payload === 'asc' ?
+            state.recipes.sort((a,b) => {
                 if (a.name.toLowerCase() > b.name.toLowerCase()) {
                     return 1;
                 }
@@ -58,7 +72,7 @@ export default function rootReducer(state= initialState, action) {
                 }
                 return 0;
             }) :
-            state.allRecipes.sort((a,b) => {
+            state.recipes.sort((a,b) => {
                 if (a.name.toLowerCase() < b.name.toLowerCase()) {
                     return 1;
                 }
@@ -74,13 +88,13 @@ export default function rootReducer(state= initialState, action) {
             
         case ORDER_BY_SCORE:
             const orderScore = action.payload === 'all' ?
-            state.allRecipes : action.payload === 'high' ?
-            state.allRecipes.sort((a,b) => {
+            state.recipes : action.payload === 'high' ?
+            state.recipes.sort((a,b) => {
                 if(a.healthScore > b.healthScore) return -1;
                 if(b.healthScore > a.healthScore) return 1;
                 return 0;
             })
-            : state.allRecipes.sort((a, b) => {
+            : state.recipes.sort((a, b) => {
                 if(a.healthScore > b.healthScore) return 1;
                 if(b.healthScore > a.healthScore) return -1;
                 return 0;

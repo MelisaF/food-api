@@ -108,7 +108,7 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    margin: 5% 10% 0 10%;;
+    margin: -3% 10% 0 10%;;
 }
 
 /* Card */
@@ -162,7 +162,8 @@
 
 /* Pagination */
 .fas {
-    font-size:24px
+    font-size:24px;
+    cursor: pointer;
 }
 .btn-page {
     background: none;
@@ -176,6 +177,9 @@ span-page {
     border: 1px solid;
     border-radius: 3px;
 }
+.page {
+    margin-top: 20px;
+}
 .pagination-container {
     text-align: center;
     gap:3px;
@@ -183,6 +187,11 @@ span-page {
 }
 
 /* Detail */
+
+.loading-detail {
+    display: flex;
+    justify-content: center;
+}
 
 .detail-container {
     width: 65%;
@@ -214,6 +223,7 @@ span-page {
     text-transform: capitalize;
     color: grey;
 }
+
 .detail-dietScore {
     display: flex;
     justify-content: space-between;

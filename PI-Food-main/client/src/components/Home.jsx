@@ -93,6 +93,13 @@ export const Home = () => {
                     </select>
                 </div>
             </div>
+            <div className='page'>
+                <Pagination 
+                    page= {page}
+                    setPage={setPage}
+                    recipePage={recipePage}
+                /> 
+            </div>
             <div className='home-card'>
                 {
                     pageCurrent?.length <= 0 ? 
@@ -124,13 +131,6 @@ export const Home = () => {
                         </div>
                     )
                 }
-            </div>
-            <div className='page'>
-                <Pagination 
-                    page= {page}
-                    setPage={setPage}
-                    recipePage={recipePage}
-                /> 
             </div>
         </>
     )
